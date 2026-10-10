@@ -7,11 +7,14 @@ import React, { useEffect, useRef } from 'react';
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   Animated,
   TouchableOpacity,
 } from 'react-native';
 import { COLORS, SPACING, FONT_SIZES } from '@/constants';
+import { getSpriteCast } from '@/constants/spriteCast';
+import { getFrame } from '@/assets/sprites/frames';
 import type { RoundState, PlayerSide, Fighter } from '@/types';
 
 interface GameOverlayProps {
@@ -81,6 +84,9 @@ export function GameOverlay({
   };
 
   const winnerFighter = getWinnerFighter();
+  const cast1 = getSpriteCast(fighter1.id);
+  const cast2 = getSpriteCast(fighter2.id);
+  const winnerCast = winnerFighter ? getSpriteCast(winnerFighter.id) : null;
 
   return (
     <Animated.View
@@ -105,20 +111,24 @@ export function GameOverlay({
             <Text style={styles.title}>ROUND {roundNumber}</Text>
             <View style={styles.vsContainer}>
               <View style={styles.fighterPreview}>
-                <Text style={styles.fighterEmoji}>🦘</Text>
-                <Text
-                  style={[styles.fighterName, { color: fighter1.primaryColor }]}
-                >
-                  {fighter1.name}
+                <Image
+                  source={getFrame(cast1.spriteId, 'idle')}
+                  style={styles.previewSprite}
+                  resizeMode="contain"
+                />
+                <Text style={[styles.fighterName, { color: cast1.labelColor }]}>
+                  {cast1.name}
                 </Text>
               </View>
               <Text style={styles.vsText}>VS</Text>
               <View style={styles.fighterPreview}>
-                <Text style={styles.fighterEmoji}>🦘</Text>
-                <Text
-                  style={[styles.fighterName, { color: fighter2.primaryColor }]}
-                >
-                  {fighter2.name}
+                <Image
+                  source={getFrame(cast2.spriteId, 'idle')}
+                  style={[styles.previewSprite, styles.previewSpriteFlipped]}
+                  resizeMode="contain"
+                />
+                <Text style={[styles.fighterName, { color: cast2.labelColor }]}>
+                  {cast2.name}
                 </Text>
               </View>
             </View>
@@ -134,16 +144,13 @@ export function GameOverlay({
             <Text style={styles.title}>
               {winner === 'draw' ? 'DRAW!' : 'ROUND OVER'}
             </Text>
-            {winnerFighter && (
+            {winnerCast && (
               <View style={styles.winnerDisplay}>
                 <Text style={styles.winnerEmoji}>🏆</Text>
                 <Text
-                  style={[
-                    styles.winnerName,
-                    { color: winnerFighter.primaryColor },
-                  ]}
+                  style={[styles.winnerName, { color: winnerCast.labelColor }]}
                 >
-                  {winnerFighter.name} WINS!
+                  {winnerCast.name} WINS!
                 </Text>
               </View>
             )}
@@ -162,16 +169,16 @@ export function GameOverlay({
         {roundState === 'match_over' && (
           <>
             <Text style={styles.title}>MATCH OVER</Text>
-            {winnerFighter ? (
+            {winnerCast ? (
               <View style={styles.winnerDisplay}>
                 <Text style={styles.championEmoji}>👑</Text>
                 <Text
                   style={[
                     styles.championName,
-                    { color: winnerFighter.primaryColor },
+                    { color: winnerCast.labelColor },
                   ]}
                 >
-                  {winnerFighter.name}
+                  {winnerCast.name}
                 </Text>
                 <Text style={styles.championSubtext}>CHAMPION!</Text>
               </View>
@@ -245,9 +252,13 @@ const styles = StyleSheet.create({
   fighterPreview: {
     alignItems: 'center',
   },
-  fighterEmoji: {
-    fontSize: 48,
+  previewSprite: {
+    width: 64,
+    height: 64,
     marginBottom: SPACING.sm,
+  },
+  previewSpriteFlipped: {
+    transform: [{ scaleX: -1 }],
   },
   fighterName: {
     fontSize: FONT_SIZES.lg,
