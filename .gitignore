@@ -96,6 +96,7 @@ yarn-error.log
 *.temp
 
 # Editor directories
+.cursor/
 .vscode/settings.json
 .vscode/launch.json
 *.swp

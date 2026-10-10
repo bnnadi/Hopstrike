@@ -1,0 +1,229 @@
+{
+  "cell": {
+    "width": 64,
+    "height": 64
+  },
+  "direction": "right",
+  "poses": [
+    "idle",
+    "jab",
+    "straight",
+    "follow_a",
+    "follow_b",
+    "lean",
+    "guard",
+    "face",
+    "head_back",
+    "low"
+  ],
+  "fighters": {
+    "spike": {
+      "name": "Spike",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#12080A",
+        "dark": "#4A0C0E",
+        "body": "#7A1818",
+        "light": "#A83028",
+        "glove": "#E6241C",
+        "glove_hi": "#FF8C6E",
+        "accent": "#A83028",
+        "eye": "#F4DCBE",
+        "pupil": "#140C0C"
+      }
+    },
+    "big_t": {
+      "name": "Big T",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#281008",
+        "dark": "#8C4010",
+        "body": "#C46820",
+        "light": "#E08C40",
+        "glove": "#D01818",
+        "glove_hi": "#FF785A",
+        "accent": "#B0181C",
+        "eye": "#F4DCBE",
+        "pupil": "#1E1008"
+      }
+    },
+    "eris": {
+      "name": "Eris",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#081C24",
+        "dark": "#105068",
+        "body": "#288CA8",
+        "light": "#60B8C8",
+        "glove": "#1878DC",
+        "glove_hi": "#8CC8FF",
+        "accent": "#C49C30",
+        "eye": "#F4ECD2",
+        "pupil": "#0C1820"
+      }
+    },
+    "jaquontavius": {
+      "name": "Jaquontavius",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#20140C",
+        "dark": "#58402C",
+        "body": "#8C6C4C",
+        "light": "#B49470",
+        "glove": "#D01C1C",
+        "glove_hi": "#FF7860",
+        "accent": "#604830",
+        "eye": "#F4E4C8",
+        "pupil": "#18100C"
+      }
+    },
+    "jecka": {
+      "name": "Jecka",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#30180C",
+        "dark": "#84542C",
+        "body": "#C48850",
+        "light": "#E0AC74",
+        "glove": "#D01C1C",
+        "glove_hi": "#FF7C60",
+        "accent": "#B08048",
+        "eye": "#F4E4C8",
+        "pupil": "#1C100A"
+      }
+    },
+    "juno": {
+      "name": "Juno",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#301C10",
+        "dark": "#8C643C",
+        "body": "#CCA468",
+        "light": "#E8C48C",
+        "glove": "#D228A0",
+        "glove_hi": "#FF8CC8",
+        "accent": "#DC5078",
+        "eye": "#FFECDC",
+        "pupil": "#28101C"
+      }
+    },
+    "nana": {
+      "name": "Nana",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#302808",
+        "dark": "#B09428",
+        "body": "#E8DC60",
+        "light": "#F8F0A0",
+        "glove": "#D01C1C",
+        "glove_hi": "#FF7860",
+        "accent": "#B08428",
+        "eye": "#FFF8DC",
+        "pupil": "#282008"
+      }
+    },
+    "lord_of_darkness": {
+      "name": "The Lord Of Darkness",
+      "frames": [
+        "01_idle.png",
+        "02_jab.png",
+        "03_straight.png",
+        "04_follow_a.png",
+        "05_follow_b.png",
+        "06_lean.png",
+        "07_guard.png",
+        "08_face.png",
+        "09_head_back.png",
+        "10_low.png"
+      ],
+      "palette": {
+        "outline": "#241408",
+        "dark": "#603C10",
+        "body": "#966420",
+        "light": "#C48C38",
+        "glove": "#2882DC",
+        "glove_hi": "#96C8FF",
+        "accent": "#E8B030",
+        "eye": "#F4E4BE",
+        "pupil": "#181008"
+      }
+    }
+  }
+}

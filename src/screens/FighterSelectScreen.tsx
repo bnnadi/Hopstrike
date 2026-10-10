@@ -7,12 +7,15 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, SPACING, FONT_SIZES, getAllFighters, COMBO_METADATA, DIFFICULTY_LIST, DIFFICULTY_DISPLAY } from '@/constants';
+import { getSpriteCast } from '@/constants/spriteCast';
+import { getFrame } from '@/assets/sprites/frames';
 import { ComboNotationInline } from '@/components';
 import type { Fighter, FighterId, AIDifficulty } from '@/types';
 import { getDifficultyDescription } from '@/services/aiEngine';
@@ -27,26 +30,30 @@ function FighterCard({
   selected: boolean;
   onPress: () => void;
 }) {
+  const cast = getSpriteCast(fighter.id);
+
   return (
     <TouchableOpacity
       style={[
         styles.fighterCard,
         selected && styles.fighterCardSelected,
-        { borderColor: selected ? fighter.primaryColor : COLORS.surface },
+        { borderColor: selected ? cast.labelColor : COLORS.surface },
       ]}
       onPress={onPress}
       activeOpacity={0.7}
     >
-      <View
-        style={[
-          styles.fighterAvatar,
-          { backgroundColor: fighter.primaryColor },
-        ]}
-      >
-        <Text style={styles.fighterEmoji}>🦘</Text>
+      <View style={styles.fighterAvatar}>
+        <Image
+          source={getFrame(cast.spriteId, 'idle')}
+          style={styles.fighterSprite}
+          resizeMode="contain"
+        />
       </View>
-      <Text style={[styles.fighterName, { color: fighter.primaryColor }]}>
-        {fighter.name}
+      <Text
+        style={[styles.fighterName, { color: cast.labelColor }]}
+        numberOfLines={1}
+      >
+        {cast.name}
       </Text>
       <Text style={styles.fighterNickname}>{fighter.nickname}</Text>
 
@@ -59,7 +66,7 @@ function FighterCard({
 
       {selected && (
         <View
-          style={[styles.selectedBadge, { backgroundColor: fighter.primaryColor }]}
+          style={[styles.selectedBadge, { backgroundColor: cast.labelColor }]}
         >
           <Text style={styles.selectedBadgeText}>✓</Text>
         </View>
@@ -133,6 +140,9 @@ export function FighterSelectScreen({ navigation }: FighterSelectScreenProps) {
   const selectedFighterData = selectedFighter
     ? fighters.find((f) => f.id === selectedFighter)
     : null;
+  const selectedCast = selectedFighterData
+    ? getSpriteCast(selectedFighterData.id)
+    : null;
 
   const comboMetadata = selectedFighterData
     ? COMBO_METADATA[selectedFighterData.special.id]
@@ -171,21 +181,21 @@ export function FighterSelectScreen({ navigation }: FighterSelectScreenProps) {
       />
 
       {/* Selected Fighter Info */}
-      {selectedFighterData && (
+      {selectedFighterData && selectedCast && (
         <View
           style={[
             styles.selectedInfo,
-            { borderColor: selectedFighterData.primaryColor },
+            { borderColor: selectedCast.labelColor },
           ]}
         >
           <View style={styles.selectedInfoContent}>
             <Text
               style={[
                 styles.selectedName,
-                { color: selectedFighterData.primaryColor },
+                { color: selectedCast.labelColor },
               ]}
             >
-              {selectedFighterData.name}
+              {selectedCast.name}
             </Text>
             <Text style={styles.selectedDesc} numberOfLines={2}>
               {selectedFighterData.description}
@@ -252,7 +262,7 @@ export function FighterSelectScreen({ navigation }: FighterSelectScreenProps) {
           <TouchableOpacity
             style={[
               styles.confirmButton,
-              { backgroundColor: selectedFighterData.primaryColor },
+              { backgroundColor: selectedCast.labelColor },
             ]}
             onPress={handleConfirm}
           >
@@ -311,15 +321,15 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surface,
   },
   fighterAvatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 64,
+    height: 64,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: SPACING.sm,
   },
-  fighterEmoji: {
-    fontSize: 32,
+  fighterSprite: {
+    width: 64,
+    height: 64,
   },
   fighterName: {
     fontSize: FONT_SIZES.md,

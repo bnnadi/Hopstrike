@@ -8,6 +8,7 @@ import { View, StyleSheet, StatusBar } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, SPACING, getFighter } from '@/constants';
+import { getSpriteCast } from '@/constants/spriteCast';
 import type { TapZone } from '@/types';
 import { useMatch, useScreenShake, getShakeIntensity } from '@/hooks';
 import {
@@ -34,6 +35,8 @@ export function FightScreen({ navigation, route }: FightScreenProps) {
 
   const fighter1 = getFighter(player1FighterId);
   const fighter2 = getFighter(player2FighterId);
+  const cast1 = getSpriteCast(fighter1.id);
+  const cast2 = getSpriteCast(fighter2.id);
 
   // Screen shake hook
   const { shakeStyle, triggerShake } = useScreenShake();
@@ -144,16 +147,16 @@ export function FightScreen({ navigation, route }: FightScreenProps) {
             <HealthBar
               currentHealth={matchState.player1.health}
               maxHealth={matchState.player1.fighter.stats.maxHealth}
-              fighterName={matchState.player1.fighter.name}
+              fighterName={cast1.name}
               side="left"
-              primaryColor={matchState.player1.fighter.primaryColor}
+              primaryColor={cast1.labelColor}
             />
             <HealthBar
               currentHealth={matchState.player2.health}
               maxHealth={matchState.player2.fighter.stats.maxHealth}
-              fighterName={matchState.player2.fighter.name}
+              fighterName={cast2.name}
               side="right"
-              primaryColor={matchState.player2.fighter.primaryColor}
+              primaryColor={cast2.labelColor}
             />
           </View>
 
