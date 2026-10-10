@@ -7,6 +7,8 @@ import { useEffect, useRef, useCallback } from 'react';
 import type { MatchState, GameConfig } from '@/types';
 import { DEFAULT_GAME_CONFIG } from '@/types';
 
+declare const performance: { now(): number };
+
 interface UseGameLoopProps {
   isRunning: boolean;
   onUpdate: (deltaTime: number) => void;
